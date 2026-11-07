@@ -1,0 +1,8 @@
+/* Os estilos gerais vêm primeiro. Os ajustes para celular ficam no fim. */
+@import './estilos/base.css';
+@import './estilos/layout.css';
+@import './estilos/capa.css';
+@import './estilos/catalogo.css';
+@import './estilos/produto.css';
+@import './estilos/cliente.css';
+@import './estilos/responsivo.css';

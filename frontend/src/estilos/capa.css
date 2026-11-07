@@ -1,0 +1,130 @@
+/* Capa da coleção retrô */
+.hero {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  background: #291b35;
+  color: #fff;
+}
+.hero-estadio,
+.hero-pelicula {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-estadio {
+  background: center 57% / cover no-repeat url('/marca/sao-januario.webp');
+  filter: grayscale(1) contrast(1.22);
+  opacity: 0.75;
+  z-index: -3;
+}
+.hero-pelicula {
+  background: linear-gradient(
+    91deg,
+    #25172eef 0%,
+    #2c1934cb 37%,
+    #2e1d3980 65%,
+    #3c2836a8 100%
+  );
+  z-index: -2;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+  right: -4%;
+  bottom: -3%;
+  width: 34%;
+  height: 36%;
+  z-index: -1;
+  background: repeating-linear-gradient(127deg, transparent 0 8px, #ff713d88 8px 10px);
+  clip-path: polygon(49% 0, 100% 0, 100% 100%, 0 100%);
+  opacity: 0.68;
+}
+.hero-dentro {
+  position: relative;
+  min-height: clamp(405px, 32vw, 493px);
+  display: flex;
+  align-items: center;
+}
+.hero-texto {
+  position: relative;
+  z-index: 2;
+  padding: 41px 0 43px;
+  max-width: 56%;
+}
+.editoria {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #ffad89;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+.editoria i {
+  width: 31px;
+  height: 2px;
+  background: var(--laranja);
+}
+.hero h1 {
+  margin: 12px 0 15px;
+  font-family: Barlow, Impact, sans-serif;
+  font-size: clamp(95px, 8.5vw, 140px);
+  font-weight: 800;
+  font-style: italic;
+  line-height: 0.78;
+  letter-spacing: -0.045em;
+}
+.hero h1 em {
+  display: block;
+  color: var(--laranja);
+  font: inherit;
+  margin-top: 0.06em;
+}
+.hero-texto p {
+  color: #f2ecf0;
+  max-width: 345px;
+  font-size: 15px;
+  line-height: 1.5;
+}
+.hero-texto .botao {
+  margin-top: 21px;
+  padding-inline: 21px 16px;
+  gap: 25px;
+}
+.hero-retrato {
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  width: 46%;
+  right: 1%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.hero-retrato img {
+  position: relative;
+  top: 2.5%;
+  height: 130%;
+  width: auto;
+  max-width: none;
+  filter: drop-shadow(-8px 8px 12px #1f11255c);
+}
+.legenda-hero {
+  position: absolute;
+  right: 0;
+  bottom: 19px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-shadow: 0 1px 5px #23142f;
+}
+.legenda-hero span {
+  width: 16px;
+  height: 2px;
+  background: var(--laranja);
+}

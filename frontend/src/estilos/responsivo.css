@@ -1,0 +1,301 @@
+@media (min-width: 1580px) {
+  .hero-estadio {
+    background-position: center 58%;
+  }
+}
+@media (max-width: 950px) {
+  .container {
+    width: 92%;
+  }
+  .ligas > * {
+    padding: 12px;
+    gap: 9px;
+    font-size: 14px;
+  }
+  .ligas img {
+    width: 34px;
+    height: 37px;
+  }
+  .topo {
+    gap: 19px;
+  }
+  .menu {
+    gap: 19px;
+  }
+  .grade-produtos {
+    gap: 13px;
+  }
+  .duas-colunas {
+    grid-template-columns: minmax(0, 1.4fr) minmax(265px, 1fr);
+    gap: 19px;
+  }
+  .resumo {
+    padding: 19px;
+  }
+}
+@media (max-width: 700px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+  .topo {
+    min-height: 64px;
+    gap: 9px;
+    justify-content: space-between;
+  }
+  .marca img {
+    width: 117px;
+  }
+  .menu-botao {
+    display: inline-flex;
+  }
+  .topo-acoes {
+    gap: 4px;
+  }
+  .menu {
+    display: none;
+  }
+  .menu.aberto {
+    display: flex;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--papel);
+    border-block: 1px solid var(--linha);
+    padding: 7px 16px;
+    gap: 22px;
+  }
+  .menu a {
+    padding-block: 12px;
+  }
+  .menu .active::after {
+    bottom: 4px;
+  }
+  .carrinho-link {
+    padding: 6px 8px;
+    gap: 6px;
+  }
+  .hero-dentro {
+    min-height: 365px;
+  }
+  .hero-texto {
+    max-width: 58%;
+    padding-block: 30px;
+  }
+  .hero h1 {
+    font-size: clamp(77px, 15.7vw, 105px);
+    margin-block: 14px 15px;
+  }
+  .hero-texto p {
+    font-size: 13px;
+    line-height: 1.45;
+    max-width: 245px;
+  }
+  .hero-texto .botao {
+    margin-top: 17px;
+    padding-inline: 15px;
+    gap: 13px;
+    min-height: 41px;
+    font-size: 13px;
+  }
+  .hero-retrato {
+    right: 0;
+    width: 36%;
+    align-items: flex-end;
+  }
+  .hero-retrato img {
+    height: 99%;
+    top: 1%;
+  }
+  .hero-estadio {
+    background-position: 60% center;
+  }
+  .hero-pelicula {
+    background: linear-gradient(90deg, #281a31ed 0%, #2c1934c7 38%, #38283866 90%);
+  }
+  .legenda-hero {
+    bottom: 8px;
+    font-size: 7px;
+  }
+  .legenda-hero span {
+    width: 8px;
+  }
+  .editoria {
+    font-size: 9px;
+    gap: 7px;
+  }
+  .editoria i {
+    width: 20px;
+  }
+  .inicio-conteudo {
+    padding-block: 25px 42px;
+  }
+  .ligas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .ligas > * {
+    min-height: 62px;
+  }
+  .ligas img {
+    width: 33px;
+    height: 35px;
+  }
+  .destaques {
+    margin-top: 27px;
+  }
+  .grade-produtos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 21px 11px;
+  }
+  .card-ficha {
+    padding: 8px 16px 0 0;
+  }
+  .card-ficha h3 {
+    font-size: 17px;
+  }
+  .card-ficha strong {
+    font-size: 15px;
+  }
+  .pagina {
+    padding-block: 19px 45px;
+  }
+  .pagina h1 {
+    margin-bottom: 22px;
+  }
+  .caminho {
+    margin-bottom: 17px;
+  }
+  .filtros {
+    grid-template-columns: 1fr 1fr;
+    margin-block: 18px 12px;
+    gap: 10px;
+  }
+  .filtros .busca {
+    grid-column: 1 / -1;
+  }
+  .detalhe-produto,
+  .duas-colunas,
+  .conta-pagina {
+    grid-template-columns: 1fr;
+  }
+  .foto-detalhe img {
+    height: min(90vw, 430px);
+    object-fit: contain;
+  }
+  .ficha-produto {
+    max-width: none;
+  }
+  .detalhe-produto {
+    gap: 20px;
+  }
+  .ficha-produto h1 {
+    margin-bottom: 5px;
+  }
+  .conta-pagina {
+    padding-block: 27px 40px;
+  }
+  .conta-arte {
+    display: none;
+  }
+  .conta-form {
+    margin: auto;
+  }
+  .conta-form h1 {
+    margin-bottom: 8px;
+  }
+  .duas-colunas {
+    gap: 27px;
+  }
+  .rodape-dentro {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .rodape nav {
+    gap: 14px;
+  }
+  .bloco-form {
+    padding: 12px 13px 17px;
+  }
+  .menu-cliente {
+    gap: 12px;
+  }
+  .linha-item {
+    gap: 11px;
+  }
+  .mini-foto,
+  .mini-foto img {
+    width: 61px;
+    height: 79px;
+  }
+  .item-direita,
+  .item-info span {
+    font-size: 13px;
+  }
+  .pedido-linha {
+    grid-template-columns: 43px 1fr auto;
+    gap: 6px 12px;
+  }
+  .pedido-linha img {
+    width: 43px;
+    height: 53px;
+    grid-row: span 2;
+  }
+  .pedido-linha svg {
+    display: none;
+  }
+  .pedido-linha b {
+    grid-column: 3;
+  }
+  .pedido-linha .status {
+    justify-self: end;
+  }
+}
+@media (max-width: 385px) {
+  .hero-dentro {
+    min-height: 350px;
+  }
+  .hero-retrato {
+    right: -4%;
+  }
+  .hero-retrato img {
+    height: 91%;
+  }
+  .hero h1 {
+    font-size: 75px;
+  }
+  .hero-texto {
+    max-width: 56%;
+  }
+  .legenda-hero {
+    display: none;
+  }
+  .carrinho-link > span {
+    display: none;
+  }
+  .ligas > * {
+    padding: 8px;
+    gap: 6px;
+    font-size: 13px;
+  }
+  .ligas svg {
+    width: 13px;
+  }
+  .endereco-campos {
+    grid-template-columns: 1fr;
+  }
+  .menu-cliente > * {
+    font-size: 12px;
+    gap: 5px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
