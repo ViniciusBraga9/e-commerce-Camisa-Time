@@ -15,6 +15,8 @@ const desenhos = {
   menu: 'M3 6h18M3 12h18M3 18h18',
   fechar: 'm5 5 14 14m0-14L5 19',
   sair: 'M10 3H4v18h6m-1-9h12m-4-4 4 4-4 4',
+  lapis: 'M11 4H4v16h16v-7M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z',
+  painel: 'M3 3h8v8H3zm10 0h8v8h-8zM3 13h8v8H3zm10 5h2m3 0h2m-4-3v2m0 3v2',
 }
 export default function Icone({ nome, tamanho = 20 }) {
   return (

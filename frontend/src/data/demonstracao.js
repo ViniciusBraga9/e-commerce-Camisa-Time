@@ -19,6 +19,16 @@ const clienteDemo = {
   endereco,
 }
 
+// Senha de demonstração: mesma que a do cliente (veja o campo teste na tela de login).
+const adminDemo = {
+  id: 'admin-demo',
+  nome: 'Admin',
+  email: 'admin@camisa10.test',
+  perfil: 'admin',
+  assinatura: '$2b$10$jirzHWViaw3BPj3pGJyTyehjxdx29tLEbUDda7yXu6bJKP.gNJ2qK',
+  endereco: null,
+}
+
 function pedidoExemplo(id, produtoId, status, dias) {
   const produto = produtosIniciais.find((item) => item.id === produtoId)
   return {
@@ -48,7 +58,7 @@ export function dadosIniciais() {
   return {
     categorias: ligasIniciais,
     produtos: produtosIniciais,
-    usuarios: [clienteDemo],
+    usuarios: [clienteDemo, adminDemo],
     sessao: null,
     carrinho: [],
     pedidos: [
