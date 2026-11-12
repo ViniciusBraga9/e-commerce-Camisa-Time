@@ -155,7 +155,7 @@ export default function Layout() {
               />
             </Link>
 
-            <p>Sheila, queria 20 reais para coxinha</p>
+            <p>Loja Autorizada</p>
           </div>
 
           <nav aria-label="Rodapé">
