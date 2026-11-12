@@ -1,8 +1,16 @@
 export const ligasIniciais = [
-  { id: 'brasileirao', nome: 'Brasileirão' },
-  { id: 'laliga', nome: 'La Liga' },
-  { id: 'premier', nome: 'Premier League' },
-  { id: 'selecoes', nome: 'Seleções' },
+  {
+    id: 'brasileirao',
+    nome: 'Brasileirão',
+    descricao: 'Camisas dos clubes brasileiros.',
+  },
+  { id: 'laliga', nome: 'La Liga', descricao: 'Camisas dos clubes da liga espanhola.' },
+  {
+    id: 'premier',
+    nome: 'Premier League',
+    descricao: 'Camisas dos clubes da liga inglesa.',
+  },
+  { id: 'selecoes', nome: 'Seleções', descricao: 'Camisas de seleções nacionais.' },
 ]
 
 // Preços em centavos e estoque por tamanho. Os valores são fictícios.

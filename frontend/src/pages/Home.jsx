@@ -20,8 +20,15 @@ export default function Home() {
               VASCO <em>1998.</em>
             </h1>
             <p>A faixa preta, a cruz no peito e a camisa que marcou uma geração.</p>
-            <Link className="botao botao-laranja" to="/produtos/vasco">
-              Ver a camisa <Icone nome="seta" />
+            <Link
+              className="botao botao-laranja"
+              to={
+                banco.produtos.some((produto) => produto.id === 'vasco')
+                  ? '/produtos/vasco'
+                  : '/produtos?modelo=Retr%C3%B4'
+              }
+            >
+              Ver coleção <Icone nome="seta" />
             </Link>
           </div>
           <div className="hero-retrato">

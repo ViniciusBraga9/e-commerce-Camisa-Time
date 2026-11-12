@@ -17,7 +17,9 @@ export default function Carrinho() {
   const unidades = itens.reduce((soma, i) => soma + i.quantidade, 0)
   function quantidade(item, valor) {
     try {
-      alterar((bancoAtual) => mudarQuantidade(bancoAtual, item.produtoId, item.tamanho, valor))
+      alterar((bancoAtual) =>
+        mudarQuantidade(bancoAtual, item.produtoId, item.tamanho, valor),
+      )
       setAviso(valor ? 'Quantidade atualizada.' : 'Camisa removida.')
       setErro('')
     } catch (falha) {

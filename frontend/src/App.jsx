@@ -13,6 +13,12 @@ import Pedidos from './pages/Pedidos'
 import Pedido from './pages/Pedido'
 import NaoEncontrada from './pages/NaoEncontrada'
 import Administracao from './pages/admin/Administracao'
+import Painel from './pages/admin/Painel'
+import ProdutosAdmin from './pages/admin/ProdutosAdmin'
+import ProdutoForm from './pages/admin/ProdutoForm'
+import CategoriasAdmin from './pages/admin/CategoriasAdmin'
+import PedidosAdmin from './pages/admin/PedidosAdmin'
+import PedidoAdmin from './pages/admin/PedidoAdmin'
 
 export default function App() {
   return (
@@ -34,9 +40,17 @@ export default function App() {
               <Route path="pedidos/:id" element={<Pedido />} />
               <Route path="perfil" element={<Perfil />} />
             </Route>
-            {/* O colega pode acrescentar as rotas de produtos, categorias e pedidos neste bloco. */}
+            {/* Todas as telas de gestão exigem o perfil de administrador. */}
             <Route element={<RotaPrivada perfil="admin" />}>
-              <Route path="admin/*" element={<Administracao />} />
+              <Route path="admin" element={<Administracao />}>
+                <Route index element={<Painel />} />
+                <Route path="produtos" element={<ProdutosAdmin />} />
+                <Route path="produtos/novo" element={<ProdutoForm />} />
+                <Route path="produtos/:id/editar" element={<ProdutoForm />} />
+                <Route path="categorias" element={<CategoriasAdmin />} />
+                <Route path="pedidos" element={<PedidosAdmin />} />
+                <Route path="pedidos/:id" element={<PedidoAdmin />} />
+              </Route>
             </Route>
             <Route path="*" element={<NaoEncontrada />} />
           </Route>

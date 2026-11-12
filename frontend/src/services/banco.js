@@ -1,10 +1,17 @@
-import { dadosIniciais } from '../data/demonstracao'
+import { administradorDemo, dadosIniciais } from '../data/demonstracao'
 
 export const CHAVE = 'camisa10.loja.v1'
 
 export function lerBanco() {
   const texto = localStorage.getItem(CHAVE)
-  return texto ? JSON.parse(texto) : structuredClone(dadosIniciais())
+  const banco = texto ? JSON.parse(texto) : structuredClone(dadosIniciais())
+  // Acrescenta o administrador sem apagar os dados da versão anterior.
+  const existeAdmin = banco.usuarios.some(
+    (usuario) =>
+      usuario.id === administradorDemo.id || usuario.email === administradorDemo.email,
+  )
+  if (!existeAdmin) banco.usuarios.push({ ...administradorDemo })
+  return banco
 }
 
 export function gravarBanco(banco) {
@@ -62,7 +69,8 @@ export async function listarProdutos(produtos, filtros) {
     if (liga && produto.liga !== liga) return false
     if (modelo && produto.modelo !== modelo) return false
     if (preco === 'ate200' && produto.preco > 20000) return false
-    if (preco === '200a250' && (produto.preco <= 20000 || produto.preco > 25000)) return false
+    if (preco === '200a250' && (produto.preco <= 20000 || produto.preco > 25000))
+      return false
     if (preco === 'acima250' && produto.preco <= 25000) return false
     return true
   })

@@ -25,8 +25,16 @@ export default function Conta({ cadastro = false }) {
   const [erro, setErro] = useState('')
   const [enviando, setEnviando] = useState(false)
   const voltar =
-    state?.voltar?.startsWith('/') && !state.voltar.startsWith('//') ? state.voltar : '/perfil'
-  if (usuario) return <Navigate to={voltar} replace />
+    state?.voltar?.startsWith('/') && !state.voltar.startsWith('//') ? state.voltar : ''
+  const acessoAdmin = voltar.startsWith('/admin')
+
+  // O administrador abre o painel. O cliente retoma a compra ou o perfil.
+  function destinoDoUsuario(conta) {
+    if (conta.perfil === 'admin') return acessoAdmin ? voltar : '/admin'
+    return voltar || '/perfil'
+  }
+
+  if (usuario) return <Navigate to={destinoDoUsuario(usuario)} replace />
 
   function mudar(nome, valor) {
     setForm({ ...form, [nome]: valor })
@@ -58,14 +66,19 @@ export default function Conta({ cadastro = false }) {
         alterar((bancoAtual) => salvarCadastro(bancoAtual, novo))
         navegar('/login', {
           replace: true,
-          state: { voltar, email: novo.email, aviso: 'Conta criada. Entre para continuar.' },
+          state: {
+            voltar,
+            email: novo.email,
+            aviso: 'Conta criada. Entre para continuar.',
+          },
         })
       } else {
         const id = await conferirLogin(lerBanco(), form.email, form.senha)
         alterar((bancoAtual) => {
           bancoAtual.sessao = { id, expiraEm: Date.now() + 8 * 60 * 60 * 1000 }
         })
-        navegar(voltar, { replace: true })
+        const conta = lerBanco().usuarios.find((item) => item.id === id)
+        navegar(destinoDoUsuario(conta), { replace: true })
       }
     } catch (falha) {
       setErro(falha.message)
@@ -80,14 +93,18 @@ export default function Conta({ cadastro = false }) {
         <img src="/marca/embalagem.webp" alt="" />
       </div>
       <section className="conta-form">
-        <span className="rotulo">Área do cliente</span>
+        <span className="rotulo">
+          {acessoAdmin ? 'Administração' : 'Área do cliente'}
+        </span>
         <h1>{cadastro ? 'Criar conta' : 'Entrar'}</h1>
         <p className="suave">
           {cadastro
             ? 'Use dados fictícios para testar a loja.'
             : voltar === '/checkout'
               ? 'Seu carrinho está salvo. Entre para finalizar a compra.'
-              : 'Acesse seus pedidos e os dados do seu perfil.'}
+              : acessoAdmin
+                ? 'Entre para gerenciar os produtos, categorias e pedidos.'
+                : 'Acesse seus pedidos e os dados do seu perfil.'}
         </p>
         {state?.aviso && (
           <p role="status" className="sucesso">
@@ -146,22 +163,34 @@ export default function Conta({ cadastro = false }) {
             <Icone nome="seta" />
           </button>
         </form>
-        <p>
-          {cadastro ? 'Já tem uma conta? ' : 'Primeira compra? '}
-          <Link className="link" to={cadastro ? '/login' : '/cadastro'} state={{ voltar }}>
-            {cadastro ? 'Entrar' : 'Criar conta'}
-          </Link>
-        </p>
+        {!acessoAdmin && (
+          <p>
+            {cadastro ? 'Já tem uma conta? ' : 'Primeira compra? '}
+            <Link
+              className="link"
+              to={cadastro ? '/login' : '/cadastro'}
+              state={{ voltar }}
+            >
+              {cadastro ? 'Entrar' : 'Criar conta'}
+            </Link>
+          </p>
+        )}
         {!cadastro && (
           <button
             className="link teste"
             onClick={() => {
-              setForm({ ...form, email: 'cliente@camisa10.test', senha: 'camisa10' })
+              setForm({
+                ...form,
+                email: acessoAdmin ? 'admin@camisa10.test' : 'cliente@camisa10.test',
+                senha: acessoAdmin ? 'admin123' : 'camisa10',
+              })
               setErro('')
               setErros({})
             }}
           >
-            Preencher com a conta de teste
+            {acessoAdmin
+              ? 'Preencher com o administrador de teste'
+              : 'Preencher com a conta de teste'}
           </button>
         )}
       </section>

@@ -23,7 +23,9 @@ export function salvarCadastro(banco, novo) {
 }
 
 export async function conferirLogin(banco, email, senha) {
-  const usuario = banco.usuarios.find((conta) => conta.email === email.trim().toLowerCase())
+  const usuario = banco.usuarios.find(
+    (conta) => conta.email === email.trim().toLowerCase(),
+  )
   if (!usuario || !(await compare(senha, usuario.assinatura))) {
     throw new Error('E-mail ou senha incorretos.')
   }
@@ -33,7 +35,9 @@ export async function conferirLogin(banco, email, senha) {
 export function editarPerfil(banco, nome, email, endereco) {
   const cliente = exigirCliente(banco)
   const novoEmail = email.trim().toLowerCase()
-  if (banco.usuarios.some((conta) => conta.email === novoEmail && conta.id !== cliente.id)) {
+  if (
+    banco.usuarios.some((conta) => conta.email === novoEmail && conta.id !== cliente.id)
+  ) {
     throw new Error('Esse e-mail já pertence a outra conta.')
   }
   cliente.nome = nome.trim()

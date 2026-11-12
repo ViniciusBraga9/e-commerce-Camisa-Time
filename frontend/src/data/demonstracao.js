@@ -44,11 +44,20 @@ function pedidoExemplo(id, produtoId, status, dias) {
   }
 }
 
+export const administradorDemo = {
+  id: 'admin-demo',
+  nome: 'Administrador Camisa10',
+  email: 'admin@camisa10.test',
+  perfil: 'admin',
+  assinatura: '$2b$10$Rt/1DnK5kt/J3zWrQ3RxLeVzeTpH10V20AX2ltw2NOQl9LqRvaEdq',
+  endereco: null,
+}
+
 export function dadosIniciais() {
   return {
     categorias: ligasIniciais,
     produtos: produtosIniciais,
-    usuarios: [clienteDemo],
+    usuarios: [clienteDemo, administradorDemo],
     sessao: null,
     carrinho: [],
     pedidos: [

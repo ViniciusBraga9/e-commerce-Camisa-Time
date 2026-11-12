@@ -39,12 +39,17 @@ function Ficha({ produto }) {
 
   return (
     <div className="container pagina">
-      <Caminho atual={produto.time} anteriores={[{ nome: 'Catálogo', para: '/produtos' }]} />
+      <Caminho
+        atual={produto.time}
+        anteriores={[{ nome: 'Catálogo', para: '/produtos' }]}
+      />
       <div className="detalhe-produto">
         <div className="foto-detalhe">
           <img
             src={produto.imagem}
-            alt={'Camisa ' + produto.time + ' ' + produto.modelo + ' ' + produto.temporada}
+            alt={
+              'Camisa ' + produto.time + ' ' + produto.modelo + ' ' + produto.temporada
+            }
           />
         </div>
         <div className="ficha-produto">

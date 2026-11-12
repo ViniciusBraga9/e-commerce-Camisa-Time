@@ -50,7 +50,10 @@ export default function Catalogo() {
   const carregando = consulta?.query !== query || consulta?.tentativa !== tentativa
   const itens = consulta?.itens || []
   const paginas = Math.max(1, Math.ceil(itens.length / POR_PAGINA))
-  const pagina = Math.max(1, Math.min(Number.parseInt(params.get('pagina'), 10) || 1, paginas))
+  const pagina = Math.max(
+    1,
+    Math.min(Number.parseInt(params.get('pagina'), 10) || 1, paginas),
+  )
   const filtrosAtivos = ['q', 'modelo', 'preco', 'liga'].some((k) => params.get(k))
   const modelos = [...new Set(banco.produtos.map((p) => p.modelo))]
 
@@ -86,7 +89,9 @@ export default function Catalogo() {
 
     return (
       <>
-        <GradeProdutos produtos={itens.slice((pagina - 1) * POR_PAGINA, pagina * POR_PAGINA)} />
+        <GradeProdutos
+          produtos={itens.slice((pagina - 1) * POR_PAGINA, pagina * POR_PAGINA)}
+        />
         {paginas > 1 && (
           <nav className="paginacao" aria-label="Páginas do catálogo">
             <button

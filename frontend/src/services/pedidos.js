@@ -59,7 +59,8 @@ export function criarPedido(banco, endereco, pagamento) {
   const cliente = exigirCliente(banco)
   const itens = itensDoCarrinho(banco)
   if (!itens.length) throw new Error('Seu carrinho está vazio.')
-  if (!['Pix', 'Cartão'].includes(pagamento)) throw new Error('Escolha uma forma de pagamento.')
+  if (!['Pix', 'Cartão'].includes(pagamento))
+    throw new Error('Escolha uma forma de pagamento.')
   if (itens.some((linha) => linha.quantidade < 1 || linha.quantidade > linha.estoque)) {
     throw new Error('O estoque mudou. Ajuste as quantidades no carrinho.')
   }
@@ -90,12 +91,14 @@ export function cancelarPedido(banco, id) {
   const pedido = banco.pedidos.find(
     (registro) => registro.id === id && registro.clienteId === cliente.id,
   )
-  if (pedido?.status !== 'Recebido') throw new Error('Esse pedido já não pode ser cancelado.')
+  if (pedido?.status !== 'Recebido')
+    throw new Error('Esse pedido já não pode ser cancelado.')
   pedido.status = 'Cancelado'
   for (const item of pedido.itens) {
     const produto = banco.produtos.find((registro) => registro.id === item.produtoId)
     if (produto)
-      produto.estoque[item.tamanho] = (produto.estoque[item.tamanho] || 0) + item.quantidade
+      produto.estoque[item.tamanho] =
+        (produto.estoque[item.tamanho] || 0) + item.quantidade
   }
 }
 
@@ -116,7 +119,8 @@ export function salvarAvaliacao(banco, produtoId, nota, mensagem) {
     throw new Error('Escolha uma nota e escreva seu comentário.')
   }
   const anterior = banco.avaliacoes.find(
-    (avaliacao) => avaliacao.clienteId === cliente.id && avaliacao.produtoId === produtoId,
+    (avaliacao) =>
+      avaliacao.clienteId === cliente.id && avaliacao.produtoId === produtoId,
   )
   const dados = { nota, mensagem: mensagem.trim(), data: new Date().toISOString() }
   if (anterior) Object.assign(anterior, dados)

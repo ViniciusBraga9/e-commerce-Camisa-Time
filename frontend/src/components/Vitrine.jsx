@@ -10,7 +10,13 @@ export function Ligas({ ativa = '', selecionar }) {
       {banco.categorias.map((liga) => {
         const conteudo = (
           <>
-            <img src={'/ligas/' + liga.id + '.png'} alt="" />
+            {['brasileirao', 'laliga', 'premier', 'selecoes'].includes(liga.id) ? (
+              <img src={'/ligas/' + liga.id + '.png'} alt="" />
+            ) : (
+              <span className="liga-inicial" aria-hidden="true">
+                {liga.nome.slice(0, 1)}
+              </span>
+            )}
             <span>{liga.nome}</span>
             <Icone nome={ativa === liga.id ? 'visto' : 'diagonal'} tamanho={16} />
           </>

@@ -73,7 +73,9 @@ export default function Perfil() {
         </fieldset>
         <fieldset className="bloco-form">
           <legend>Endereço de entrega</legend>
-          <p className="suave">Opcional. Preencha para usar este endereço na próxima compra.</p>
+          <p className="suave">
+            Opcional. Preencha para usar este endereço na próxima compra.
+          </p>
           <EnderecoForm dados={endereco} mudar={mudar} erros={erros} />
         </fieldset>
         <Erro>{erro}</Erro>

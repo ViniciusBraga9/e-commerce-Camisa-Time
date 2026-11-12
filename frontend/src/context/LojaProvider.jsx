@@ -6,7 +6,10 @@ function carregar() {
   try {
     return { banco: lerBanco(), erro: '' }
   } catch {
-    return { banco: null, erro: 'Não foi possível abrir os dados da loja neste navegador.' }
+    return {
+      banco: null,
+      erro: 'Não foi possível abrir os dados da loja neste navegador.',
+    }
   }
 }
 

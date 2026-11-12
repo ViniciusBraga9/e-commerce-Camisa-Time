@@ -14,7 +14,9 @@ export default function RotaPrivada({ perfil = 'cliente' }) {
         replace
         state={{
           voltar: local.pathname + local.search + local.hash,
-          aviso: banco.sessao ? 'Sua sessão expirou. Entre novamente para continuar.' : '',
+          aviso: banco.sessao
+            ? 'Sua sessão expirou. Entre novamente para continuar.'
+            : '',
         }}
       />
     )
@@ -22,7 +24,11 @@ export default function RotaPrivada({ perfil = 'cliente' }) {
     return (
       <div className="container pagina pagina-estado">
         <h1>Acesso restrito</h1>
-        <p>Esta área é reservada à administração da loja.</p>
+        <p>
+          {perfil === 'admin'
+            ? 'Esta área é reservada à administração da loja.'
+            : 'Esta área é reservada aos clientes. Para comprar, entre com uma conta de cliente.'}
+        </p>
         <Link className="botao" to="/">
           Voltar à loja
         </Link>

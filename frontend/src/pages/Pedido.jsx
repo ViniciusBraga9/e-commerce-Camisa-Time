@@ -12,7 +12,7 @@ import NaoEncontrada from './NaoEncontrada'
 const etapas = ['Recebido', 'Enviado', 'Entregue']
 
 function Detalhes({ pedido }) {
-  const { alterar } = useLoja()
+  const { banco, alterar } = useLoja()
   const { state } = useLocation()
   const [confirmar, setConfirmar] = useState(false)
   const [acompanhar, setAcompanhar] = useState(false)
@@ -27,7 +27,10 @@ function Detalhes({ pedido }) {
   }
   return (
     <div className="container pagina">
-      <Caminho atual={pedido.id} anteriores={[{ nome: 'Meus pedidos', para: '/pedidos' }]} />
+      <Caminho
+        atual={pedido.id}
+        anteriores={[{ nome: 'Meus pedidos', para: '/pedidos' }]}
+      />
       {state?.confirmado && pedido.status === 'Recebido' && (
         <p className="sucesso" role="status">
           <Icone nome="visto" tamanho={17} />
@@ -41,7 +44,9 @@ function Detalhes({ pedido }) {
           <div className="pedido-status">
             <div className="titulo-linha">
               <h2>Status do pedido</h2>
-              <span className={'status ' + pedido.status.toLowerCase()}>{pedido.status}</span>
+              <span className={'status ' + pedido.status.toLowerCase()}>
+                {pedido.status}
+              </span>
             </div>
             <p>Pedido realizado em {dataCurta(pedido.data)}.</p>
             {pedido.status === 'Recebido' && !confirmar && (
@@ -53,7 +58,10 @@ function Detalhes({ pedido }) {
               <div className="confirmacao">
                 <strong>Confirmar o cancelamento deste pedido?</strong>
                 <div className="acoes">
-                  <button className="botao secundario" onClick={() => setConfirmar(false)}>
+                  <button
+                    className="botao secundario"
+                    onClick={() => setConfirmar(false)}
+                  >
                     Manter pedido
                   </button>
                   <button className="botao" onClick={cancelar}>
@@ -96,22 +104,40 @@ function Detalhes({ pedido }) {
           <div className="lista-itens">
             {pedido.itens.map((i) => (
               <article className="linha-item" key={i.produtoId + i.tamanho}>
-                <Link className="mini-foto" to={'/produtos/' + i.produtoId}>
+                <Link
+                  className="mini-foto"
+                  to={
+                    banco.produtos.some((produto) => produto.id === i.produtoId)
+                      ? '/produtos/' + i.produtoId
+                      : '/produtos'
+                  }
+                >
                   <img src={i.imagem} alt={'Camisa ' + i.nome} />
                 </Link>
                 <div className="item-info">
-                  <Link className="item-nome" to={'/produtos/' + i.produtoId}>
+                  <Link
+                    className="item-nome"
+                    to={
+                      banco.produtos.some((produto) => produto.id === i.produtoId)
+                        ? '/produtos/' + i.produtoId
+                        : '/produtos'
+                    }
+                  >
                     {i.nome}
                   </Link>
                   <span>{i.modelo}</span>
                   <small>
                     Tam. {i.tamanho} · {i.quantidade} un.
                   </small>
-                  {pedido.status === 'Entregue' && (
-                    <Link className="link" to={'/produtos/' + i.produtoId + '#avaliacoes'}>
-                      Ver e avaliar camisa
-                    </Link>
-                  )}
+                  {pedido.status === 'Entregue' &&
+                    banco.produtos.some((produto) => produto.id === i.produtoId) && (
+                      <Link
+                        className="link"
+                        to={'/produtos/' + i.produtoId + '#avaliacoes'}
+                      >
+                        Ver e avaliar camisa
+                      </Link>
+                    )}
                 </div>
                 <strong className="item-direita">{moeda(i.preco * i.quantidade)}</strong>
               </article>

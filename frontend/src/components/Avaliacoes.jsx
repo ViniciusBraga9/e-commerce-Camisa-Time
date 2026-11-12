@@ -13,7 +13,9 @@ function FormAvaliacao({ produtoId, anterior, fechar }) {
   function salvar(evento) {
     evento.preventDefault()
     try {
-      alterar((bancoAtual) => salvarAvaliacao(bancoAtual, produtoId, Number(nota), mensagem))
+      alterar((bancoAtual) =>
+        salvarAvaliacao(bancoAtual, produtoId, Number(nota), mensagem),
+      )
       fechar('Avaliação salva.')
     } catch (falha) {
       setErro(falha.message)
